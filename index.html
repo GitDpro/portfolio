@@ -5,24 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Best Document In the West!</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://tailwindcss.com"></script>
   </head>
   <body>
-    <section class="hero">
-      <h1>Hey there... Im GitDpro!</h1>
-      <h2>Keep going to find my stuffs...</h2>
-    </section>
-    
-    <section class="content">
-      <h2 class="reveal">Hello im fading...</h2>
-      <p1 class="reveal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium amet quaerat vero quod, nemo cupiditate fugiat. Ullam illo, minima dolores voluptatem quia dolorem provident dicta magni. Facere, voluptatem! Accusamus, aspernatur.</p1>
-    </section>
-    
-    <section class="content">
-      <div class="card reveal">
-        <h3>Feature Card</h3>
-        <p>Works for cards, images, or entire sections.</p>
+    <header>
+      <div>
+        <a href="#">GitDpro</a>
       </div>
-    </section>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <h1>Hey there... Im GitDpro!</h1>
+        <h2>Keep going to find my stuffs...</h2>
+      </section>
+
+      <section id="Skills" class="content">
+        <h2 class="reveal">I started Coding when I was 8...</h2>
+        <p class="reveal delay-1"
+          >Heres my scratch account where I built some stuff!</p
+        >
+        <div class="bg-white p-6 rounded-lg shadow-md reveal delay-2">
+          <h2 >
+            Eventually I got into robotics, web development and python...
+          </h2>
+          <p>Heres all the skills I have acquired </p>
+        </div>
+      </section>
+
+      <section class="content">
+        <div class="card reveal delay-1">
+          <h3>Feature Card</h3>
+          <p>Works for cards, images, or entire sections.</p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>
+        &copy; 2026 Made with love by GitDpro. Built with pure Html, Css and
+        Javascript!
+      </p>
+    </footer>
+
     <script src="script.js"></script>
   </body>
 </html>
