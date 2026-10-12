@@ -1,20 +1,12 @@
 const canvas = document.getElementById("universe");
 const ctx = canvas.getContext("2d");
 
-const themes = [
-  { star: "#a8c7ff", glow: "#617dff" },
-  { star: "#e1b7ff", glow: "#a45cff" },
-  { star: "#ffe1a1", glow: "#ff9e42" },
-  { star: "#a4ffe8", glow: "#36d9c5" },
-];
+let width, height;
+let stars = [];
 
 let themeIndex = 0;
-let width = window.innerWidth;
-let height = window.innerHeight;
 
-let stars = [];
-let shockwaves = [];
-let shootingStars = [];
+
 
 const mouse = {
   x: -1000,
@@ -22,23 +14,50 @@ const mouse = {
   active: false,
 };
 
-function resize() {}
+function resize() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
 
-function createStar() {}
+  stars = Array.from(
+    { length: Math.floor((width * height) / 9000) },
+    () => {
+      const x = Math.random() * width;
+      const y = Math.random() * height;
 
-function updateStars() {}
+      return {
+        x, y, baseX: x, baseY: y,
+        offsetX: 0, offsetY: 0,
+        radius: Math.random() * 1.5 + 0.5,
+        alpha: Math.random() * 0.5 + 0.4,
+        speed: Math.random() * 0.02 + 0.005,
+      };
+    }
+  )
+}
 
-function drawStar(star, time) {}
 
-function drawConnections() {}
+function animate(time) {
+  ctx.clearRect(0,0,width,height)
 
-function createShockwave(x, y) {}
+  for (const star of stars) {
+    const dx = mouse.x - star.baseX
+    const dy = mouse.y - star.baseY
 
-function drawShockwaves() {}
+    const distance = Math.hypot(dx,dy);
 
-function spawnShootingStar() {}
+    const strength = mouse.active && distance < 180 ? (1- distance/180) ** 2 * 22 / (distance || 1) : 0;
 
-function drawShootingStars() {}
+    star.offsetX += (dx * strength - star.offsetX) * 0.08
+    star.offsetY += (dy * strength - star.offsetY) * 0.08
+
+    star.x = star.baseX + star.offsetX
+    star.y = star.baseY + star.offsetY
+
+    ctx.globalAplha = star.alpha * (0.75 + Math.sin(time * star.speed + star.baseX) * 0.25);
+  }
+
+}
+
 
 window.addEventListener("pointermove", (event) => {
   mouse.x = event.clientX;
